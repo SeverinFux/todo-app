@@ -1,7 +1,5 @@
-import {createContext} from "react";
-
 export interface Task {
-    id: number;
+    id: string;
     title: string;
     priority: PriorityType;
     category: string;

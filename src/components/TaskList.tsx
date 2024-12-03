@@ -8,7 +8,7 @@ import {Content} from "antd/lib/layout/layout";
 
 const defaultTaskList: Task[] = [
     {
-        id: 1,
+        id: 'idk any uuids',
         title: 'Aufräumen',
         priority: Priority.HIGH,
         category: 'General',
@@ -16,7 +16,7 @@ const defaultTaskList: Task[] = [
         done: false,
     },
     {
-        id: 2,
+        id: 'idk two different uuids',
         title: 'Einkaufen',
         priority: Priority.MEDIUM,
         category: 'General',
@@ -24,7 +24,7 @@ const defaultTaskList: Task[] = [
         done: false,
     },
     {
-        id: 3,
+        id: 'idk three different uuids',
         title: 'Znacht kochen',
         priority: Priority.LOW,
         category: 'General',
@@ -129,7 +129,7 @@ const TaskList: React.FC = () => {
             render: (_, task) => (
                 <Popconfirm
                     title="Mark this task as done"
-                    description="Are you completed this task?"
+                    description="Have you completed this task?"
                     okText="Yes"
                     cancelText="No"
                     onConfirm={() => doneClicked(task)}

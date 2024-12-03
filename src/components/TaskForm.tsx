@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Priority, Task} from "../model/models";
 import {AutoComplete, Button, DatePicker, Form, Input, Modal, Segmented, Space} from "antd";
-import dayjs from "dayjs"; // For handling date formatting
+import dayjs from "dayjs";
+import {v4 as uuidv4} from 'uuid';
+
 
 const TaskForm: React.FC<{
     addTask: (task: Task) => void;
@@ -24,13 +26,11 @@ const TaskForm: React.FC<{
 
         const hideModal = () => {
             setIsModalOpen(false);
-            form.resetFields(); // Reset form when modal is closed
+            form.resetFields();
         };
 
         const handleCategoryChange = (value: string) => {
-            // Check if the value exists in the options
             if (!categoryAutocomplete.some(option => option.value.toLowerCase() === value.toLowerCase())) {
-                // Add the new category to the options
                 setCategoryAutocomplete([...categoryAutocomplete, {value}]);
             }
         };
@@ -38,7 +38,7 @@ const TaskForm: React.FC<{
         const handleSubmit = (values: any) => {
             hideModal();
             const newTask: Task = {
-                id: editTask?.id || Date.now(), // Use existing ID for edit or generate a new one
+                id: editTask?.id || uuidv4(),
                 title: values.title,
                 priority: Priority[values.priority.toUpperCase() as keyof typeof Priority],
                 category: values.category,
@@ -112,7 +112,7 @@ const TaskForm: React.FC<{
                             rules={[{required: true, message: 'Please select the due date!'}]}
                         >
                             <DatePicker
-                                style={{ width: '100%' }}
+                                style={{width: '100%'}}
                                 format="DD-MM-YYYY"
                                 disabledDate={(current) => {
                                     // Disable all dates before today
