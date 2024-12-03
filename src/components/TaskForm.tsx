@@ -45,6 +45,7 @@ const TaskForm: React.FC<{ addTask: (task: Task) => void; editTask?: Task }> =
                 priority: Priority[values.priority.toUpperCase() as keyof typeof Priority],
                 category: values.category,
                 dueDate: values.dueDate ? values.dueDate.toDate() : null,
+                done: false,
             };
             handleCategoryChange(newTask.category);
             console.log(newTask);
@@ -55,12 +56,13 @@ const TaskForm: React.FC<{ addTask: (task: Task) => void; editTask?: Task }> =
 
         useEffect(() => {
             if (editTask) {
-                setIsModalOpen(true); // Open modal automatically for editing
+                setIsModalOpen(true);
                 form.setFieldsValue({
                     title: editTask.title,
-                    priority: editTask.priority.value, // Use `value` for the segmented control
+                    priority: editTask.priority.value,
                     category: editTask.category,
-                    dueDate: editTask.dueDate ? dayjs(editTask.dueDate) : null, // Format date for DatePicker
+                    dueDate: editTask.dueDate ? dayjs(editTask.dueDate) : null,
+                    done: false,
                 });
             }
         }, [editTask, form]);

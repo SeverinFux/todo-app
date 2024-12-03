@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TaskForm from './TaskForm';
 import {Priority, Task} from '../model/models';
-import {Table, TableColumnsType} from 'antd';
+import {Popconfirm, Segmented, Table, TableColumnsType} from 'antd';
 import {Utils} from "../utils/utils";
+import {Content} from "antd/lib/layout/layout";
 
 
 const defaultTaskList: Task[] = [
@@ -12,6 +13,7 @@ const defaultTaskList: Task[] = [
         priority: Priority.HIGH,
         category: 'General',
         dueDate: new Date('2021-09-01'),
+        done: false,
     },
     {
         id: 2,
@@ -19,6 +21,7 @@ const defaultTaskList: Task[] = [
         priority: Priority.MEDIUM,
         category: 'General',
         dueDate: new Date('2021-09-02'),
+        done: false,
     },
     {
         id: 3,
@@ -26,28 +29,47 @@ const defaultTaskList: Task[] = [
         priority: Priority.LOW,
         category: 'General',
         dueDate: new Date('2021-09-03'),
+        done: false,
     },
 ];
 
 
 const TaskList: React.FC = () => {
-    const [tasks, setTasks] = useState<Task[]>(defaultTaskList);
+    const [allTasks, setAllTasks] = useState<Task[]>(defaultTaskList);
+    const [visibleTasks, setVisibleTasks] = useState<Task[]>();
     const [editTask, setEditTask] = useState<Task | undefined>(undefined);
+    const [priorityFilter, setPriorityFilter] = useState<string>('all');
 
-    const addTask = (task: Task) => {
-        setTasks(prevTasks => {
+    useEffect(() => {
+        updateVisibleTasks(allTasks);
+    }, [allTasks, defaultTaskList, priorityFilter]);
+
+    const updateVisibleTasks = (tasks: Task[]) => {
+        let filteredTasks = tasks.filter(task => !task.done); // Filter tasks where done is false
+        if (priorityFilter !== 'all') {
+            const priority = Priority[priorityFilter.toUpperCase() as keyof typeof Priority];
+            filteredTasks = filteredTasks.filter(task => task.priority === priority);
+        }
+        setVisibleTasks(filteredTasks);
+    }
+    const addOrUpdateTask = (task: Task) => {
+        setAllTasks(prevTasks => {
             const taskExists = prevTasks.some(t => t.id === task.id);
             if (taskExists) {
-                // Replace the task with the same ID
                 return prevTasks.map(t => (t.id === task.id ? task : t));
             } else {
-                // Add the new task
                 return [...prevTasks, task];
             }
         });
+        updateVisibleTasks([...allTasks, task]);
     };
-        const editClicked = (task: Task) => {
+
+    const editClicked = (task: Task) => {
         setEditTask(task)
+    }
+    const doneClicked = (task: Task) => {
+        task.done = true
+        addOrUpdateTask(task)
     }
 
     const columns: TableColumnsType<Task> = [
@@ -89,14 +111,32 @@ const TaskList: React.FC = () => {
                 <a onClick={() => editClicked(task)}>Edit</a>
             ),
         },
+        {
+            title: 'Done',
+            key: 'done',
+            render: (_, task) => (
+                <Popconfirm
+                    title="Mark this task as done"
+                    description="Are you completed this task?"
+                    okText="Yes"
+                    cancelText="No"
+                    onConfirm={() => doneClicked(task)}
+                >
+                    <a>Done</a>
+                </Popconfirm>
+            ),
+        },
     ];
 
     return (
-        <div>
-            <TaskForm addTask={addTask} editTask={editTask}/>
+        <Content style={{ padding: '0 48px' }}>
+            <TaskForm addTask={addOrUpdateTask} editTask={editTask}/>
             <br/>
-            <Table<Task> style={{marginTop: "16px"}} pagination={false} columns={columns} dataSource={tasks}/>
-        </div>
+            <Segmented style={{marginTop: "16px"}} value={priorityFilter} onChange={setPriorityFilter}
+                       options={['all', 'high', 'medium', 'low',]}/>
+            <br/>
+            <Table<Task> style={{marginTop: "16px"}} pagination={false} columns={columns} dataSource={visibleTasks} />
+        </Content>
     );
 };
 

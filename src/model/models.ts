@@ -6,6 +6,7 @@ export interface Task {
     priority: PriorityType;
     category: string;
     dueDate: Date | null;
+    done: boolean;
 }
 
 export interface TaskListContextType {
