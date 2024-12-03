@@ -32,23 +32,35 @@ const defaultTaskList: Task[] = [
         done: false,
     },
 ];
+const optionsInitial: { value: string }[] = [
+    {value: 'General'},
+    {value: 'Work'},
+    {value: 'Personal'},
+    {value: 'Shopping'},
+    {value: 'Others'},
+];
 
 
 const TaskList: React.FC = () => {
     const [allTasks, setAllTasks] = useState<Task[]>(defaultTaskList);
     const [visibleTasks, setVisibleTasks] = useState<Task[]>();
     const [editTask, setEditTask] = useState<Task | undefined>(undefined);
+    const [categoryAutocomplete, setCategoryAutocomplete] = useState<{ value: string }[]>(optionsInitial);
     const [priorityFilter, setPriorityFilter] = useState<string>('all');
+    const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
     useEffect(() => {
         updateVisibleTasks(allTasks);
-    }, [allTasks, defaultTaskList, priorityFilter]);
+    }, [allTasks, defaultTaskList, priorityFilter, categoryFilter]);
 
     const updateVisibleTasks = (tasks: Task[]) => {
         let filteredTasks = tasks.filter(task => !task.done); // Filter tasks where done is false
         if (priorityFilter !== 'all') {
             const priority = Priority[priorityFilter.toUpperCase() as keyof typeof Priority];
             filteredTasks = filteredTasks.filter(task => task.priority === priority);
+        }
+        if (categoryFilter !== 'all') {
+            filteredTasks = filteredTasks.filter(task => task.category === categoryFilter);
         }
         setVisibleTasks(filteredTasks);
     }
@@ -129,13 +141,21 @@ const TaskList: React.FC = () => {
     ];
 
     return (
-        <Content style={{ padding: '0 48px' }}>
-            <TaskForm addTask={addOrUpdateTask} editTask={editTask}/>
+        <Content style={{padding: '0 48px'}}>
+            <TaskForm addTask={addOrUpdateTask} editTask={editTask} categoryAutocomplete={categoryAutocomplete}
+                      setCategoryAutocomplete={setCategoryAutocomplete}/>
             <br/>
             <Segmented style={{marginTop: "16px"}} value={priorityFilter} onChange={setPriorityFilter}
                        options={['all', 'high', 'medium', 'low',]}/>
             <br/>
-            <Table<Task> style={{marginTop: "16px"}} pagination={false} columns={columns} dataSource={visibleTasks} />
+            <Segmented
+                style={{marginTop: "16px"}}
+                value={categoryFilter}
+                onChange={value => setCategoryFilter(value.toString())}
+                options={['all', ...categoryAutocomplete.map(cat => cat.value)]}
+            />
+            <br/>
+            <Table<Task> style={{marginTop: "16px"}} pagination={false} columns={columns} dataSource={visibleTasks}/>
         </Content>
     );
 };

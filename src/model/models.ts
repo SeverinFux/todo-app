@@ -9,15 +9,6 @@ export interface Task {
     done: boolean;
 }
 
-export interface TaskListContextType {
-    tasks: Task[];
-    addTask: (task: Task) => void;
-    updateTask: (updatedTask: Task) => void;
-    deleteTask: (taskId: number) => void;
-}
-
-export const TaskListContext = createContext<TaskListContextType | undefined>(undefined);
-
 export const Priority = {
     HIGH: {value: 'high', weight: 3}, // weight = how important
     MEDIUM: {value: 'medium', weight: 2},
