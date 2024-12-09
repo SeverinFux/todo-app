@@ -121,7 +121,7 @@ const TaskList: React.FC = () => {
             title: 'Edit',
             key: 'edit',
             render: (_, task) => (
-                <a onClick={() => editClicked(task)}>Edit</a>
+                <a href={""} onClick={() => editClicked(task)}>Edit</a>
             ),
         },
         {
@@ -135,7 +135,7 @@ const TaskList: React.FC = () => {
                     cancelText="No"
                     onConfirm={() => doneClicked(task)}
                 >
-                    <a>Done</a>
+                    <a href={""}>Done</a>
                 </Popconfirm>
             ),
         },
