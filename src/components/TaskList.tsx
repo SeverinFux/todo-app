@@ -49,9 +49,6 @@ const TaskList: React.FC = () => {
     const [priorityFilter, setPriorityFilter] = useState<string>('all');
     const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
-    useEffect(() => {
-        updateVisibleTasks(allTasks);
-    }, [allTasks, defaultTaskList, priorityFilter, categoryFilter]);
 
     const updateVisibleTasks = (tasks: Task[]) => {
         let filteredTasks = tasks.filter(task => !task.done); // Filter tasks where done is false
@@ -64,6 +61,10 @@ const TaskList: React.FC = () => {
         }
         setVisibleTasks(filteredTasks);
     }
+    useEffect(() => {
+        updateVisibleTasks(allTasks);
+    }, [allTasks, defaultTaskList, priorityFilter, categoryFilter, updateVisibleTasks]);
+
     const addOrUpdateTask = (task: Task) => {
         setAllTasks(prevTasks => {
             const taskExists = prevTasks.some(t => t.id === task.id);
