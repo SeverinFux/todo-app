@@ -1,7 +1,9 @@
-export {}
+describe("todo tests", () => {
+    beforeEach(() => {
+        cy.visit("/");
+    });
 
-describe('template spec', () => {
-  it('passes', () => {
-    cy.visit('http://localhost:3000/')
-  })
-})
+    it("should render the TODO-App header", () => {
+        cy.get('.App-header').should('contain.text', 'TODO-App');
+    });
+});
