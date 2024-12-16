@@ -1,0 +1,42 @@
+Testarten
+
+Unit-Tests: Testen einzelner Funktionen wie Priorisierung, Kategorien und Fälligkeitsdaten.
+Integrationstests: Überprüfen das Zusammenspiel von Modulen.
+End-to-End-Tests (E2E): Testen Benutzerinteraktionen und Workflows.
+Code-Qualität-Tests: Linter überprüft die Codequalität.
+Teststrategie
+
+Testpyramide: 70 % Unit-Tests, 20 % Integrationstests, 10 % E2E-Tests.
+Automatisierung: Alle Tests werden in der CI/CD-Pipeline automatisiert ausgeführt.
+Abdeckung: Mindestens 80 % der Anforderungen aus den User-Stories müssen erfüllt werden.
+Testfälle
+
+User-Story "Aufgaben priorisieren":
+
+Erstellen einer Aufgabe mit Priorität (Unit-Test):
+Eingabe: Aufgabe "Einkaufen", Priorität "hoch".
+Erwartet: Aufgabe wird erstellt, Priorität wird angezeigt.
+Änderung der Priorität (Integration-Test):
+Eingabe: Aufgabe "Einkaufen", neue Priorität "mittel".
+Erwartet: Priorität wird geändert.
+User-Story "Aufgaben in Kategorien einteilen":
+
+Erstellen einer Aufgabe mit Kategorie (Unit-Test):
+Eingabe: Aufgabe "Joggen", Kategorie "Privat".
+Erwartet: Aufgabe und Kategorie werden angezeigt.
+Filtern nach Kategorie (E2E-Test):
+Eingabe: Filter "Privat".
+Erwartet: Nur Aufgaben dieser Kategorie werden angezeigt.
+User-Story "Fälligkeitsdatum setzen":
+
+Erstellen einer Aufgabe mit Fälligkeitsdatum (Unit-Test):
+Eingabe: Aufgabe "Projekt", Fälligkeitsdatum 02.12.
+Erwartet: Datum wird angezeigt.
+Farbige Markierung bei naher Deadline (Integration-Test):
+Eingabe: Fälligkeitsdatum ist morgen.
+Erwartet: Aufgabe wird farblich markiert.
+Pipeline-Anforderungen:
+
+Code wird bei jedem Commit gebaut (CI/CD-Test).
+Linter erkennt und meldet Codefehler (Code-Qualitäts-Test).
+Unit-Tests werden in der Pipeline erfolgreich ausgeführt (CI/CD-Test).
