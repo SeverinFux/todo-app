@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import TaskForm from './TaskForm';
 import {Priority, Task} from '../model/models';
-import {Popconfirm, Segmented, Table, TableColumnsType} from 'antd';
+import {Button, Popconfirm, Segmented, Table, TableColumnsType} from 'antd';
 import {Utils} from "../utils/utils";
 import {Content} from "antd/lib/layout/layout";
 
@@ -121,7 +121,7 @@ const TaskList: React.FC = () => {
             title: 'Edit',
             key: 'edit',
             render: (_, task) => (
-                <a href={""} onClick={() => editClicked(task)}>Edit</a>
+                <Button onClick={() => editClicked(task)}>Edit</Button>
             ),
         },
         {
@@ -135,7 +135,7 @@ const TaskList: React.FC = () => {
                     cancelText="No"
                     onConfirm={() => doneClicked(task)}
                 >
-                    <a href={""}>Done</a>
+                    <Button>Done</Button>
                 </Popconfirm>
             ),
         },
