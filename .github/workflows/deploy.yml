@@ -51,5 +51,7 @@ jobs:
       - name: Deploy to GitHub Pages
         run: npm run deploy
 
-      - name: Print deployment URL
-        run: echo "Deployed to: https://<your-username>.github.io/<your-repo-name>/"
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
