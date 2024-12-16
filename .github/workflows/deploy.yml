@@ -22,7 +22,14 @@ jobs:
         run: npm install
 
       - name: Build the project
-        run: npm run buildprint line after deploying the url its deployed
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        run: npm run deploy
+
+      - name: Print deployment URL
+        run:
+          echo "Deployed to: https://<your-username>.github.io/<your-repo-name>/"
 
 testing:
   runs-on: ubuntu-latest
