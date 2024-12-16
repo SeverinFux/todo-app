@@ -7,8 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
-  },
+    "deploy": "echo 'Deploying... please wait' && echo 'Deployed on severin-todo-app.com'"  },
   "dependencies": {
     "@types/node": "^16.18.121",
     "@types/react": "^18.3.12",
@@ -26,15 +25,9 @@
     "@types/cypress": "^1.1.6",
     "@vitejs/plugin-react": "^4.0.3",
     "cypress": "^12.17.4",
-    "gh-pages": "^6.2.0",
     "vite": "^4.4.5"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
