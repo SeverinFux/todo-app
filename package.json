@@ -7,7 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "echo 'Deploying... please wait' && echo 'Deployed on severin-todo-app.com'"  },
+    "deploy": "echo \"Deploying... please wait\" && echo \"Deployed on severin-todo-app.com\""
+  },
   "dependencies": {
     "@types/node": "^16.18.121",
     "@types/react": "^18.3.12",
