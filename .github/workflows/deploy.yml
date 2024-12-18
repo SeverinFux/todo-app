@@ -1,0 +1,29 @@
+name: FTP Deployment
+
+on:
+  push:
+    branches:
+      - master  # Trigger deployment only on the master branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Git-FTP
+        run: |
+          git config git-ftp.url "ftp.oneofus.ch/steingeist"
+          git config git-ftp.user "h160491_steingeist"
+          git config git-ftp.password "steingeist24"
+
+      - name: Deploy with Git-FTP
+        run: |
+          if git ftp push; then
+            echo "FTP deployment successful."
+          else
+            echo "Initial deployment required. Running git ftp init..."
+            git ftp init
+          fi
