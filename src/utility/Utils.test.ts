@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom';
-import {Utils} from "./Utils";
+import { Utils } from './utils';
+
+
 
 describe('Utils class', () => {
     describe('sortByString', () => {

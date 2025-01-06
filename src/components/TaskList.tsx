@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TaskForm from './TaskForm';
 import {Priority, Task} from '../model/models';
 import {Button, Popconfirm, Segmented, Table, TableColumnsType} from 'antd';
-import {Utils} from "../utils/utils";
+import {Utils} from "../././utility/utils";
 import {Content} from "antd/lib/layout/layout";
 
 
