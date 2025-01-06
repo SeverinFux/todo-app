@@ -99,6 +99,7 @@ const TaskForm: React.FC<{
                             rules={[{required: true, message: 'Please input the category!'}]}
                         >
                             <AutoComplete
+                                id={"categoryInput"}
                                 options={categoryAutocomplete}
                                 filterOption={(inputValue, option) =>
                                     option!.value!.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
@@ -114,6 +115,7 @@ const TaskForm: React.FC<{
                             <DatePicker
                                 style={{width: '100%'}}
                                 format="DD-MM-YYYY"
+                                id={"dueDateInput"}
                                 disabledDate={(current) => {
                                     // Disable all dates before today
                                     return current && current < dayjs().startOf('day');

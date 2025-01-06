@@ -1,4 +1,4 @@
-export class Utils {
+export class UtilClass {
     static sortByString(a: string, b: string) {
         return a.localeCompare(b);
     }

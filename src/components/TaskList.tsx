@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import TaskForm from './TaskForm';
 import {Priority, Task} from '../model/models';
 import {Button, Popconfirm, Segmented, Table, TableColumnsType} from 'antd';
-import {Utils} from "../././utility/utils";
+import {UtilClass} from "../utility/UtilClass";
 import {Content} from "antd/lib/layout/layout";
 
 
@@ -90,21 +90,21 @@ const TaskList: React.FC = () => {
             title: 'Titel',
             dataIndex: 'title',
             key: 'title',
-            sorter: (a, b) => Utils.sortByString(a.title, b.title),
+            sorter: (a, b) => UtilClass.sortByString(a.title, b.title),
             ellipsis: true,
         },
         {
             title: 'Category',
             dataIndex: 'category',
             key: 'category',
-            sorter: (a, b) => Utils.sortByString(a.category, b.category),
+            sorter: (a, b) => UtilClass.sortByString(a.category, b.category),
             ellipsis: true,
         },
         {
             title: 'Priority',
             dataIndex: 'priority',
             key: 'priority',
-            sorter: (a, b) => Utils.sortByNumber(a.priority.weight, b.priority.weight),
+            sorter: (a, b) => UtilClass.sortByNumber(a.priority.weight, b.priority.weight),
             ellipsis: true,
             render: (priority) => priority.value,
         },
@@ -112,7 +112,7 @@ const TaskList: React.FC = () => {
             title: 'Todo until',
             dataIndex: 'dueDate',
             key: 'dueDate',
-            sorter: (a, b) => Utils.sortByDate(a.dueDate!, b.dueDate!),
+            sorter: (a, b) => UtilClass.sortByDate(a.dueDate!, b.dueDate!),
             defaultSortOrder: 'ascend',
             ellipsis: true,
             render: (dueDate: Date) => dueDate.toLocaleDateString(),

@@ -10,30 +10,24 @@ describe("TODO App Tests", () => {
     });
 
     it("should add a new TODO item", () => {
-        const todoText = "Buy groceries";
-        cy.get('input[placeholder="Add a new task..."]').type(`${todoText}{enter}`);
-        cy.get('.todo-list').should('contain.text', todoText);
+        cy.get('button').contains('+').click();
+        cy.get('input[placeholder="Task Title"]').type('New Task');
+        cy.get('#priority > .ant-segmented-group > :nth-child(3) > .ant-segmented-item-label').click(); // Low
+        cy.get('input[id="categoryInput"]').type('{selectall}{del}Per{downarrow}{enter}') // use auto complete
+        cy.get('input[placeholder="Select date"]').type('31-12-2025');
+
+        cy.get('button').contains('Add Task').click(); //click out of Date selector
+        cy.get('button').contains('Add Task').click();
+
+
+        //check the 5th row
+        cy.get(':nth-child(4) > [title="New Task"]').should('be.visible');
+        cy.get(':nth-child(4) > [title="Personal"]').should('be.visible');
+        cy.get(':nth-child(4) > [title="low"]').should('be.visible');
     });
 
     it("should mark a TODO item as completed", () => {
-        const todoText = "Walk the dog";
-        cy.get('input[placeholder="Add a new task..."]').type(`${todoText}{enter}`);
-        cy.get('.todo-list li').contains(todoText).parent().find('input[type="checkbox"]').check();
-        cy.get('.todo-list li').contains(todoText).should('have.class', 'completed');
-    });
-
-    it("should delete a TODO item", () => {
-        const todoText = "Read a book";
-        cy.get('input[placeholder="Add a new task..."]').type(`${todoText}{enter}`);
-        cy.get('.todo-list li').contains(todoText).parent().find('.delete-btn').click();
-        cy.get('.todo-list').should('not.contain.text', todoText);
-    });
-
-    it("should show the correct count of pending tasks", () => {
-        cy.get('input[placeholder="Add a new task..."]').type(`Task 1{enter}`);
-        cy.get('input[placeholder="Add a new task..."]').type(`Task 2{enter}`);
-        cy.get('.task-count').should('contain.text', '2 tasks left');
-        cy.get('.todo-list li').contains('Task 1').parent().find('input[type="checkbox"]').check();
-        cy.get('.task-count').should('contain.text', '1 task left');
+        cy.get('table tr').eq(1).find('button').contains('Done').click();
+        cy.get('table').should('not.contain.text', 'Testeee');
     });
 });
