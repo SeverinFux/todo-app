@@ -1,3 +1,5 @@
+export {};
+
 describe("todo tests", () => {
     beforeEach(() => {
         cy.visit("/");

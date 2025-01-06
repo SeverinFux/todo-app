@@ -7,7 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "echo \"Deploying... please wait\" && echo \"Deployed on severin-todo-app.com\""
+    "deploy": "echo \"Deploying... please wait\" && echo \"Deployed on severin-todo-app.com\"",
+    "unit-test": "jest"
   },
   "dependencies": {
     "@types/node": "^16.18.121",
@@ -23,9 +24,14 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
     "@types/cypress": "^1.1.6",
+    "@types/jest": "^29.5.14",
     "@vitejs/plugin-react": "^4.0.3",
-    "cypress": "^12.17.4",
+    "cypress": "^13.16.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
     "vite": "^4.4.5"
   },
   "browserslist": {
@@ -34,5 +40,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "exclude": [
+    "cypress.config.ts",
+    "cypress",
+    "node_modules"
+  ]
 }
