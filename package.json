@@ -5,10 +5,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --coverage",
+    "test": "jest",
     "eject": "react-scripts eject",
-    "deploy": "echo \"Deploying... please wait\" && echo \"Deployed on severin-todo-app.com\"",
-    "unit-test": "jest"
+    "deploy": "echo \"Deploying... please wait\" && echo \"Deployed on severin-todo-app.com\""
   },
   "dependencies": {
     "@types/node": "^16.18.121",
