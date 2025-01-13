@@ -47,6 +47,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Start the application
+        run: npm start &
+        env:
+          CI: true
+
+      - name: Wait for server to be ready
+        run: sleep 60
+
       - name: Run Jest tests
         run: npm test
 
