@@ -1,14 +1,30 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
+import { defineConfig } from 'eslint-define-config';
 
-
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
-  {languageOptions: { globals: globals.browser }},
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-];
+export default defineConfig({
+  root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest', // Supports the latest ECMAScript features
+    sourceType: 'module', // Allows the use of imports
+    tsconfigRootDir: __dirname, // Root directory for TypeScript
+    project: ['./tsconfig.json'], // Path to the tsconfig file
+  },
+  env: {
+    browser: true, // Enables browser globals like window and document
+    es2021: true, // Enables modern ES features
+  },
+  extends: [
+    'plugin:react/recommended',
+    'standard-with-typescript',
+    'plugin:import/typescript',
+    'plugin:prettier/recommended',
+  ],
+  plugins: ['react', 'prettier'],
+  rules: {
+    '@typescript-eslint/triple-slash-reference': 'off', // Disables triple-slash reference errors
+    'prettier/prettier': 'warn', // Ensures Prettier formatting
+    'no-console': 'warn', // Warns about console.log usage
+    'no-debugger': 'error', // Disallows debugger statements
+  },
+  overrides: [],
+});
