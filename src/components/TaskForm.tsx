@@ -35,14 +35,14 @@ const TaskForm: React.FC<{
             }
         };
 
-        const handleSubmit = (values: any) => {
+        const handleSubmit = (values:Task ) => {
             hideModal();
             const newTask: Task = {
                 id: editTask?.id || uuidv4(),
                 title: values.title,
-                priority: Priority[values.priority.toUpperCase() as keyof typeof Priority],
+                priority: Priority[values.priority.value.toUpperCase() as keyof typeof Priority],
                 category: values.category,
-                dueDate: values.dueDate ? values.dueDate.toDate() : null,
+                dueDate: values.dueDate ? values.dueDate : null,
                 done: false,
             };
             handleCategoryChange(newTask.category);
