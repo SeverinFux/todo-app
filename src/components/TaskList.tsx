@@ -4,6 +4,7 @@ import {Priority, Task} from '../model/models';
 import {Button, Popconfirm, Segmented, Table, TableColumnsType} from 'antd';
 import Util from "../utility/Util";
 import {Content} from "antd/lib/layout/layout";
+import { format } from 'date-fns';
 
 
 const defaultTaskList: Task[] = [
@@ -115,7 +116,7 @@ const TaskList: React.FC = () => {
             sorter: (a, b) => Util.sortByDate(a.dueDate!, b.dueDate!),
             defaultSortOrder: 'ascend',
             ellipsis: true,
-            render: (dueDate: Date) => dueDate.toLocaleDateString(),
+            render: (dueDate: Date) => format(dueDate, 'd. MMM yyyy'),
         },
         {
             title: 'Edit',

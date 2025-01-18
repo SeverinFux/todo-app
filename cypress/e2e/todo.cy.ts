@@ -63,11 +63,11 @@ describe("TODO App Tests", () => {
 
     it("sort TODOs by Date", () => {
         cy.get('[title="Todo until"] > .ant-table-column-sorters').click() // sort by date (desc) high to low
-        cy.get('.ant-table-tbody > :nth-child(1) > .ant-table-column-sort').should('contain.text', '03/09/2021') // first row
-        cy.get('.ant-table-tbody > :nth-child(3) > .ant-table-column-sort').should('contain.text', '01/09/2021') // last row
+        cy.get('.ant-table-tbody > :nth-child(1) > .ant-table-column-sort').should('contain.text', '3. Sep 2021') // first row
+        cy.get('.ant-table-tbody > :nth-child(3) > .ant-table-column-sort').should('contain.text', '1. Sep 2021') // last row
         cy.get('[title="Todo until"] > .ant-table-column-sorters').click() // cancel sort
         cy.get('[title="Todo until"] > .ant-table-column-sorters').click() // sort by date (asc) low to high
-        cy.get('.ant-table-tbody > :nth-child(1) > .ant-table-column-sort').should('contain.text', '01/09/2021') // first row
-        cy.get('.ant-table-tbody > :nth-child(3) > .ant-table-column-sort').should('contain.text', '03/09/2021') // last row
+        cy.get('.ant-table-tbody > :nth-child(1) > .ant-table-column-sort').should('contain.text', '1. Sep 2021') // first row
+        cy.get('.ant-table-tbody > :nth-child(3) > .ant-table-column-sort').should('contain.text', '3. Sep 2021') // last row
     });
 });
