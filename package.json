@@ -9,7 +9,7 @@
     "unit-test": "jest",
     "eject": "react-scripts eject",
     "deploy": "echo \"Deploying... please wait\" && echo \"Deployed on severin-todo-app.com\"",
-    "lint": "eslint . --ext .js,.mjs,.cjs,.ts,.jsx,.tsx",
+    "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
