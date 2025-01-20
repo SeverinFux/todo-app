@@ -45,7 +45,7 @@ jobs:
           CI: true
 
       - name: Wait for server to be ready
-        run: sleep 60
+        run: sleep 25
 
       - name: Run Cypress tests
         run: npx cypress run
