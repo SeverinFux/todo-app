@@ -79,9 +79,9 @@ jobs:
   build:
     runs-on: ubuntu-latest  # Verwenden des neuesten Ubuntu-Images
     needs:
-      - e2e-tests  # Abhängigkeit von e2e-tests
-      - unit-tests  # Abhängigkeit von unit-tests
-
+      - lint
+      - e2e-tests
+      - unit-tests
     steps:
       - name: Checkout code
         uses: actions/checkout@v2  # Code aus dem Repository auschecken
