@@ -3,97 +3,97 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Ausführung bei Pushes auf den main-Branch
 
 jobs:
   e2e-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Verwenden des neuesten Ubuntu-Images
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Code aus dem Repository auschecken
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2  # Node.js einrichten
         with:
-          node-version: '16'
+          node-version: '16'  # Verwenden von Node.js Version 16
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # Abhängigkeiten installieren
 
       - name: Start the application
-        run: npm start &
+        run: npm start &  # Anwendung im Hintergrund starten
         env:
-          CI: true
+          CI: true  # CI-Umgebungsvariable setzen
 
       - name: Wait for server to be ready
-        run: sleep 60
+        run: sleep 10  # 10 Sekunden warten, bis der Server bereit ist
 
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npx cypress run  # Cypress-Tests ausführen
 
   unit-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Verwenden des neuesten Ubuntu-Images
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Code aus dem Repository auschecken
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2  # Node.js einrichten
         with:
-          node-version: '16'
+          node-version: '16'  # Verwenden von Node.js Version 16
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # Abhängigkeiten installieren
 
       - name: Start the application
-        run: npm start &
+        run: npm start &  # Anwendung im Hintergrund starten
         env:
-          CI: true
+          CI: true  # CI-Umgebungsvariable setzen
 
       - name: Wait for server to be ready
-        run: sleep 60
+        run: sleep 10  # 10 Sekunden warten, bis der Server bereit ist
 
       - name: Run Jest tests
-        run: npm test
+        run: npm test  # Jest-Tests ausführen
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Verwenden des neuesten Ubuntu-Images
     needs:
-      - e2e-tests
-      - unit-tests
+      - e2e-tests  # Abhängigkeit von e2e-tests
+      - unit-tests  # Abhängigkeit von unit-tests
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Code aus dem Repository auschecken
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2  # Node.js einrichten
         with:
-          node-version: '16'
+          node-version: '16'  # Verwenden von Node.js Version 16
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # Abhängigkeiten installieren
 
       - name: Build the project
-        run: npm run build
+        run: npm run build  # Projekt bauen
 
   deploy:
-    runs-on: ubuntu-latest
-    needs: build
+    runs-on: ubuntu-latest  # Verwenden des neuesten Ubuntu-Images
+    needs: build  # Abhängigkeit vom build-Job
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # Code aus dem Repository auschecken
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v2  # Node.js einrichten
         with:
-          node-version: '16'
+          node-version: '16'  # Verwenden von Node.js Version 16
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # Abhängigkeiten installieren
 
       - name: Deploy to GitHub Pages
-        run: npm run deploy
+        run: npm run deploy  # Auf GitHub Pages deployen
