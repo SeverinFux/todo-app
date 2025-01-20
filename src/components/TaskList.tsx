@@ -4,6 +4,7 @@ import {Priority, Task} from '../model/models';
 import {Button, Popconfirm, Segmented, Table, TableColumnsType} from 'antd';
 import Util from "../utility/Util";
 import {Content} from "antd/lib/layout/layout";
+import { format } from 'date-fns';
 
 
 const defaultTaskList: Task[] = [
@@ -63,7 +64,8 @@ const TaskList: React.FC = () => {
     }
     useEffect(() => {
         updateVisibleTasks(allTasks);
-    }, [allTasks, defaultTaskList, priorityFilter, categoryFilter, updateVisibleTasks]);
+        console.log("oh oh vv" )
+    }, [allTasks, priorityFilter, categoryFilter]);
 
     const addOrUpdateTask = (task: Task) => {
         setAllTasks(prevTasks => {
@@ -106,7 +108,7 @@ const TaskList: React.FC = () => {
             key: 'priority',
             sorter: (a, b) => Util.sortByNumber(a.priority.weight, b.priority.weight),
             ellipsis: true,
-            render: (priority) => priority.value,
+            render: (priority) => priority?.value,
         },
         {
             title: 'Todo until',
@@ -115,7 +117,7 @@ const TaskList: React.FC = () => {
             sorter: (a, b) => Util.sortByDate(a.dueDate!, b.dueDate!),
             defaultSortOrder: 'ascend',
             ellipsis: true,
-            render: (dueDate: Date) => dueDate.toLocaleDateString(),
+            render: (dueDate: Date) => format(dueDate, 'd. MMM yyyy'),
         },
         {
             title: 'Edit',
