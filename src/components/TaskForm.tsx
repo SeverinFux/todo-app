@@ -42,13 +42,13 @@ const TaskForm: React.FC<{
                     title: editTask.title,
                     priority: editTask.priority.value,
                     category: editTask.category,
-                    dueDate: editTask.dueDate ? editTask.dueDate: null,
+                    dueDate: editTask?.dueDate ? dayjs(editTask?.dueDate) : dayjs(),
                     done: false,
                 });
             }
-        }, []);
+        }, [editTask]);
 
-        const handleSubmit = (values: any ) => {
+        const handleSubmit = (values: any) => {
             hideModal();
             const newTask: Task = {
                 id: editTask?.id || uuidv4(),
