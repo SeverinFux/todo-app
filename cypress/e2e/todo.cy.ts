@@ -56,6 +56,7 @@ describe("TODO App Tests", () => {
         cy.get(':nth-child(1) > :nth-child(5) > .ant-btn').click() // Edit Button on "Aufräumen"
         cy.get('#categoryInput').type('{selectall}{del}Custom Category{enter}') // create custom category
         cy.get(':nth-child(7) > .ant-segmented-item-label').click() // Sort by Custom Category
+        cy.get('.ant-form-item-control-input-content > .ant-btn').click() // Save
         cy.get('table').should('contain.text', 'Aufräumen');
         cy.get('table').should('not.contain.text',  'Znacht kochen');
 
