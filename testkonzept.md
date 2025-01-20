@@ -1,7 +1,7 @@
 # Testkonzept für TODO-App
 
 ## Überblick
-Dieses Dokument beschreibt die Teststrategie für die TODO-App, einschließlich automatisierter und manueller Testansätze, um die Qualität und Zuverlässigkeit der Anwendung sicherzustellen.
+Dieses Dokument beschreibt die Teststrategie für die TODO-App, einschliesslich automatisierter und manueller Testansätze, um die Qualität und Zuverlässigkeit der Anwendung sicherzustellen.
 
 ## Automatisierte Tests
 
@@ -52,7 +52,7 @@ Manuelle Integrationstests werden durchgeführt, um die Integration der verschie
     - Überprüfen, ob Benutzer Benachrichtigungen für bevorstehende und überfällige Aufgaben erhalten.
 
 5. **Responsives Design:**
-    - Sicherstellen, dass die Anwendung responsiv ist und auf verschiedenen Geräten und Bildschirmgrößen gut funktioniert.
+    - Sicherstellen, dass die Anwendung responsiv ist und auf verschiedenen Geräten und Bildschirmgrössen gut funktioniert.
 
 ## Fazit
 Dieses Testkonzept gewährleistet eine umfassende Abdeckung der TODO-App durch eine Kombination aus automatisierten Unit- und End-to-End-Tests sowie manuellen Integrationstests. Dieser Ansatz hilft, Probleme frühzeitig zu identifizieren und zu beheben, und sorgt für eine qualitativ hochwertige und zuverlässige Anwendung.
