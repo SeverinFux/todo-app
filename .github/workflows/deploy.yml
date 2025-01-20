@@ -6,6 +6,24 @@ on:
       - main  # Ausführung bei Pushes auf den main-Branch
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest  # Verwenden des neuesten Ubuntu-Images
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Code aus dem Repository auschecken
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2  # Node.js einrichten
+        with:
+          node-version: '16'  # Verwenden von Node.js Version 16
+
+      - name: Install dependencies
+        run: npm install  # Abhängigkeiten installieren
+
+      - name: Run ESLint
+        run: npm run lint  # ESLint ausführen, um den Code auf Stil- und Syntaxfehler zu überprüfen
+
   e2e-tests:
     runs-on: ubuntu-latest  # Verwenden des neuesten Ubuntu-Images
 
