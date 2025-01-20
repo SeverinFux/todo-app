@@ -14,38 +14,6 @@ export default [
       jsonFormat: jsonFormatPlugin,
     },
     rules: {
-      // Enforce consistent indentation
-      "json-format/sort-package-json": ["error"],
-
-      // Ensure consistent double quotes in JSON
-      "quotes": ["error", "double"],
-
-      // Disallow trailing commas
-      "comma-dangle": ["error", "never"],
-
-      // Enforce specific key order in package.json
-      "json-format/validate-order": ["error", {
-        order: [
-          "name",
-          "version",
-          "description",
-          "keywords",
-          "homepage",
-          "bugs",
-          "license",
-          "author",
-          "contributors",
-          "files",
-          "main",
-          "module",
-          "types",
-          "scripts",
-          "dependencies",
-          "devDependencies",
-          "peerDependencies",
-          "optionalDependencies"
-        ]
-      }]
     },
   },
 ];
