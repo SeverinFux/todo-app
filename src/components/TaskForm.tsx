@@ -34,36 +34,36 @@ const TaskForm: React.FC<{
                 setCategoryAutocomplete([...categoryAutocomplete, {value}]);
             }
         };
-
-        const handleSubmit = (values:Task ) => {
-            hideModal();
-            const newTask: Task = {
-                id: editTask?.id || uuidv4(),
-                title: values.title,
-                priority: Priority[values.priority.value.toUpperCase() as keyof typeof Priority],
-                category: values.category,
-                dueDate: values.dueDate ? values.dueDate : null,
-                done: false,
-            };
-            handleCategoryChange(newTask.category);
-            console.log(newTask);
-
-            addTask(newTask);
-            form.resetFields();
-        };
-
         useEffect(() => {
+            console.log("oh oh xx")
             if (editTask) {
                 setIsModalOpen(true);
                 form.setFieldsValue({
                     title: editTask.title,
                     priority: editTask.priority.value,
                     category: editTask.category,
-                    dueDate: editTask.dueDate ? dayjs(editTask.dueDate) : null,
+                    dueDate: editTask.dueDate ? editTask.dueDate: null,
                     done: false,
                 });
             }
-        }, [editTask, form]);
+        }, []);
+
+        const handleSubmit = (values: any ) => {
+            hideModal();
+            const newTask: Task = {
+                id: editTask?.id || uuidv4(),
+                title: values.title,
+                priority: Priority[values.priority.toUpperCase() as keyof typeof Priority],
+                category: values.category,
+                dueDate: values.dueDate ? new Date(values.dueDate) : new Date(),
+                done: false,
+            };
+            handleCategoryChange(newTask.category);
+            console.log(newTask);
+            addTask(newTask);
+            form.resetFields();
+        };
+
 
         return (
             <Space style={{marginTop: "16px"}}>

@@ -64,7 +64,8 @@ const TaskList: React.FC = () => {
     }
     useEffect(() => {
         updateVisibleTasks(allTasks);
-    }, [allTasks, defaultTaskList, priorityFilter, categoryFilter, updateVisibleTasks]);
+        console.log("oh oh vv" )
+    }, [allTasks, priorityFilter, categoryFilter]);
 
     const addOrUpdateTask = (task: Task) => {
         setAllTasks(prevTasks => {
@@ -107,7 +108,7 @@ const TaskList: React.FC = () => {
             key: 'priority',
             sorter: (a, b) => Util.sortByNumber(a.priority.weight, b.priority.weight),
             ellipsis: true,
-            render: (priority) => priority.value,
+            render: (priority) => priority?.value,
         },
         {
             title: 'Todo until',
